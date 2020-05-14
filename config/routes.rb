@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    sessiions: 'users/sessions'
+  }
   root to: "welcome#home"
-  devise_for :users
-  # root 'welcome#'
+  
   resources :categories
   resources :messages
   resources :missions
