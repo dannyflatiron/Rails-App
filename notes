@@ -1,0 +1,32 @@
+User
+has_many :missions
+has_many :messages
+has_many :messaged_missions through: :messages
+has_many :categories, through: :messages
+code_name:string
+email: string
+password:password_digest
+
+
+Missions
+belongs_to :users
+belongs_to :category
+has_many :messages
+has_many :users through: :comments
+title:string
+content:string
+
+Messages
+belongs_to :users
+belongs_to :missions
+content:string
+
+
+
+Categories
+has_many :posts
+has_many :users, through: :missions
+name:string
+
+
+
