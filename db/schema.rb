@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_051103) do
+ActiveRecord::Schema.define(version: 2020_05_14_061131) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.integer "user_id"
+    t.integer "mission_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["mission_id"], name: "index_messages_on_mission_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
 
   create_table "missions", force: :cascade do |t|
     t.string "title"
@@ -23,6 +39,21 @@ ActiveRecord::Schema.define(version: 2020_05_14_051103) do
     t.index ["user_id"], name: "index_missions_on_user_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "code_name"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "messages", "missions"
+  add_foreign_key "messages", "users"
   add_foreign_key "missions", "categories"
   add_foreign_key "missions", "users"
 end
