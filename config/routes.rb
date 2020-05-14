@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  root to: "welcome#home"
+  devise_for :users
+  # root 'welcome#'
   resources :categories
   resources :messages
-  resources :users
   resources :missions
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
