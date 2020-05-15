@@ -6,16 +6,15 @@
 
 <%= form_for([@mission, @message]) do |f| %>
 
-<% if !@mission %>
-  <%= f.label :mission %>
-  <%= f.collection_select :mission_id, Mission.all, :id, :title %>
-<% end %>
+    <% if !!@mission %>
+    <%= f.label :Mission%>
+    <%= f.collection_select :mission_id, Mission.all, :id, :title %>
+    <% end %>
 
-  <%= f.label :Encode your message with morse code %>
-  <%= f.text_field :content %>
+    <%= f.label :Message %>
+    <%= f.text_field :content %>
 
-
-  <%= f.submit "Leave Message" %>
+    <%= f.submit "Encode Message" %>
 
 <% end %>
 
