@@ -1,5 +1,5 @@
-<% if @mission %>
-<h1>New Message for Mission: <%= @mission.title %></h1>
+<% if @message.mission %>
+<h1>New Message for Mission: <%= @message.mission.title %></h1>
 <% end %>
 
 
@@ -15,16 +15,16 @@
   </div>
 <% end %>
 
-<%= form_for([@mission, @message]) do |f| %>
+<%= form_for([@message.mission, @message]) do |f| %>
 
-   <% if !!@mission %>
-    <%= f.label :mission%>
+   <% if !!@message.mission %>
+    <%= f.label :Mission%>
     <%= f.collection_select :mission_id, Mission.all, :id, :title %>
    <% else %>
     <%= f.hidden_field :mission_id %>
    <% end %>
 
-    <%= f.label :content %>
+    <%= f.label :Message %>
     <%= f.text_field :content %>
 
     <%= f.submit "Encode Message" %>
