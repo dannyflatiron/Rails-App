@@ -1,1 +1,11 @@
-<h1>All messages</h1>
+<% if @mission %>
+  <h1>Messages for Mission: <%= @mission.title %></h1>
+<% else %>
+  <h1>All Messages</h1>
+<% end %>
+
+<ul>
+<% @messages.each do |m|%>
+  <li><%= m.user.name%> says "<%= m.content%>" about this mission: <strong><%= link_to m.mission.title, mission_path(m.mission_id) %></strong></li>
+<% end %>
+</ul>
