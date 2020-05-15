@@ -38,12 +38,17 @@ class MessagesController < ApplicationController
     
     def update
         @message = Message.find_by(id: params[:id])
+        if @message.update(message_params)
+            redirect_to message_path(@message)
+        else
+            render :edit
+        end
     end
 
     private
 
     def message_params
-        params.require(:message).permit(:content)
+        params.require(:message).permit(:content, :message_id)
     end
 
 
