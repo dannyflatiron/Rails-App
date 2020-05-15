@@ -1,1 +1,3 @@
-<h1>All Encoded Messages</h1>
+<h1><%= @message.user.name %>'s Encoded Messages</h1>
+
+<p>Coded message: "<%= @message.content %>" for Mission <%= link_to @message.mission.title, mission_path(@message.mission_id) %></p>
