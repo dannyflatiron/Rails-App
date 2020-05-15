@@ -1,5 +1,10 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are: :recoverable, :rememerable,
+  has_many :missions
+  has_many :categories, through: :missions
+  has_many :messages
+  has_many :messaged_missions, through: :messages, source: :mission
+
+  # Include default devise modules. Others available are: 
   # :confirmable, :lockable, :timeoutable, :trackable and 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
