@@ -1,26 +1,26 @@
 class MissionsController < ApplicationController
     skip_before_action :authenticate_user!, except: [:show, :index]
 
-    def index
-       
-    end
 
     def index
-      if params[:mission_id] && @mission = Mission.find_by_id(params[:mission_id])
-        @message = @mission.messages.build
+      if params[:user_id] && @user = User.find_by_id(params[:user_id])
+        @missions = @user.missions
       else
-        @error = "That mission does not exist" if params[:mission_id] 
-        @message = Message.new 
+        @error = "That user does not exist" if params[:user_id] 
+        @missions = Mission.all 
       end    
     end
 
     def new
-      @mission = Mission.new
+      if params[:user_id] && @user = User.find_by_id(params[:user_id])
+        @mission = @user.missions.build
+      else
+        @mission = Mission.new
+      end
     end
 
     def create
       @mission = current_user.missions.build(mission_params)
-      # @mission.user = current_user
       if @mission.save 
         redirect_to missions_path
       else
