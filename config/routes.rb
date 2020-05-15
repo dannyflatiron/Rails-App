@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     omniauth_callbacks: 'omniauth' }
 
-  
-  resources :categories
+  get '/signup' => 'users#new'
+  post '/signup' => 'users#create'
+
+  resources :users
   resources :messages
   resources :missions
 
