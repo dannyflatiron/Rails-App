@@ -13,7 +13,6 @@ class MissionsController < ApplicationController
     def create
         @mission = current_user.missions.build(mission_params)
         # @mission.user = current_user
-        binding.pry
         if @mission.save 
             redirect_to missions_path
         else
