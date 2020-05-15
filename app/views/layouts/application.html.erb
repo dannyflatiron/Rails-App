@@ -23,6 +23,12 @@
       <%= link_to "Sign In", new_user_session_path %>
     <% end %>
   </nav>
+  <div>
+    <% if flash[:message] %>
+      <%= flash[:message] %>
+    <% end %>
+    <%= @error %>
+  </div>
     <%= yield %>
   </body>
 </html>
