@@ -11,7 +11,8 @@ Rails.application.routes.draw do
 
   # Nested Routes
   resources :users, only: [:show] do 
-    resources :missions, only: [:new, :create, :index]
+    resources :missions, only: [:new, :create, :index, :show]
+    resources :messages, shallow: true
   end
   resources :missions do 
     resources :messages
