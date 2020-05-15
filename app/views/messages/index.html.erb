@@ -1,5 +1,4 @@
 <% if @mission %>
-<% binding.pry %>
   <h1>Messages for Mission: <%= @mission.title %></h1><br>
   <% @mission.messages.each do |message| %>
     <%= message.content %> says <%= message.content %>
