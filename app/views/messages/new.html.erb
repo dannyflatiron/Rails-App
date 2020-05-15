@@ -1,9 +1,12 @@
-<h1>New Message</h1>
+<% if @mission %>
+<h1>New Message for Mission: <%= @mission.title %></h1>
+<% end %>
+
+<% if @mission %>
+
+<%= form_for([@mission, @message]) do |f| %>
 
 
-<%= form_for([@message.missions,@message]) do |f| %>
-
-     
   <%= f.label :mission %>
   <%= f.collection_select :mission_id, Mission.all, :id, :title %>
 
@@ -12,5 +15,11 @@
 
 
   <%= f.submit "Leave Message" %>
+
+<% end %>
+
+<% else %>
+
+<h3>
 
 <% end %>
