@@ -3,15 +3,28 @@
 <% end %>
 
 
+<% if @message.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+ 
+    <ul>
+    <% @message.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <%= form_for([@mission, @message]) do |f| %>
 
-    <% if !!@mission %>
-    <%= f.label :Mission%>
+   
+    <%= f.label :mission%>
     <%= f.collection_select :mission_id, Mission.all, :id, :title %>
-    <% end %>
+   
+    <%= f.hidden_field :mission_id %>
+   
 
-    <%= f.label :Message %>
+    <%= f.label :content %>
     <%= f.text_field :content %>
 
     <%= f.submit "Encode Message" %>
