@@ -11,7 +11,12 @@ class MessagesController < ApplicationController
     end
 
     def new
-        @message = Message.new
+        if params[:mission_id] && @mission = Mission.find_by_id(params[:mission_id])
+            @message = @mission.messages.build()
+        else
+            @error = "That mission does not exist" if params[:mission_id]
+        end
+        @message = Message.new 
     end
 
     def create 
