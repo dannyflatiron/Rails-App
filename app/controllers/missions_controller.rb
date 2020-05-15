@@ -1,5 +1,7 @@
 class MissionsController < ApplicationController
-    before_action :authenticate_user!, except: [:show, :index]
+    skip_before_action :authenticate_user!, except: [:show, :index]
+
+
     def index
         @missions = Mission.all
     end
