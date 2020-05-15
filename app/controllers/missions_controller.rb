@@ -1,5 +1,5 @@
 class MissionsController < ApplicationController
-
+    before_action :authenticate_user!, except: [:show, :index]
     def index
         @missions = Mission.all
     end
@@ -17,6 +17,11 @@ class MissionsController < ApplicationController
         else
             redirect_to '/'
         end
+    end
+
+    def show
+        @mission = Mission.find_by_id(params[:id])
+        redirect_to missions_path if !@mission
     end
 
     private
