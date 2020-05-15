@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :missions
-  has_many :categories, through: :missions
+  # has_many :categories, through: :missions
   has_many :messages
   has_many :messaged_missions, through: :messages, source: :mission
 
