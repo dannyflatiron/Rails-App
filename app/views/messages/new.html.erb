@@ -2,15 +2,16 @@
 <h1>New Message for Mission: <%= @mission.title %></h1>
 <% end %>
 
-<% if @mission %>
+
 
 <%= form_for([@mission, @message]) do |f| %>
 
-
+<% if !@mission %>
   <%= f.label :mission %>
   <%= f.collection_select :mission_id, Mission.all, :id, :title %>
+<% end %>
 
-  <%= f.label :Message %>
+  <%= f.label :Encode your message with morse code %>
   <%= f.text_field :content %>
 
 
@@ -18,8 +19,3 @@
 
 <% end %>
 
-<% else %>
-
-<h3>
-
-<% end %>
