@@ -11,10 +11,10 @@ Rails.application.routes.draw do
 
   # Nested Routes
   resources :users, only: [:show] do 
-    resources :posts, only: [:new, :create, :index]
+    resources :missions, only: [:new, :create, :index]
   end
   resources :missions do 
-    resources :messages, only: [:new, :create, :show]
+    resources :messages
   end
   
 
