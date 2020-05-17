@@ -7,8 +7,12 @@ class MissionsController < ApplicationController
         @missions = @user.missions.alphabetical_order
       else
         @error = "That user does not exist" if params[:user_id] 
-        @missions = Mission.all.alphabetical_order
+        @missions = Mission.alphabetical_order.includes(:category, :user)
       end    
+      @missions = @missions.search(params[:q].downcase) if params[:q] && !params[:q].empty?
+      # @missions = @missions.filter(params[:mission][:category_id]) if params[:mission] && params[:mission][:category_id] != ""
+      # binding.pry
+
     end
 
     def show
