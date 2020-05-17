@@ -1,8 +1,8 @@
 class User < ApplicationRecord
-  has_many :missions
-  has_many :categories, through: :missions
-  has_many :messages
-  has_many :messaged_missions, through: :messages, source: :mission
+  has_many :missions, dependent: :delete_all
+  has_many :categories, through: :missions, dependent: :delete_all
+  has_many :messages, dependent: :delete_all
+  has_many :messaged_missions, through: :messages, source: :mission, dependent: :delete_all
 
   # Include default devise modules. Others available are: 
   # :confirmable, :lockable, :timeoutable, :trackable and 
