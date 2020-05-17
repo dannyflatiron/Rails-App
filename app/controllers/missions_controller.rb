@@ -1,5 +1,5 @@
 class MissionsController < ApplicationController
-    before_action :authenticate_user!, except: [:show, :index]
+    before_action :authenticate_user!
 
 
     def index
@@ -7,7 +7,7 @@ class MissionsController < ApplicationController
         @missions = @user.missions.alphabetical_order
       else
         @error = "That user does not exist" if params[:user_id] 
-        @missions = Mission.date_created.includes(:category, :user)
+        @missions = Mission.last_updated.includes(:category, :user)
       end    
       @missions = @missions.search(params[:q].downcase) if params[:q] && !params[:q].empty?
       @missions = @missions.filter(params[:mission][:category_id]) if params.try(:mission) && params.try(:mission).try(:category_id)
@@ -39,7 +39,10 @@ class MissionsController < ApplicationController
 
     def edit
       @mission = Mission.find_by(params[:id])
-      redirect to missions_path if !@mission || @mission.user != current_user
+      if !@mission || @mission.user != current_user
+        flash[:message] = "You do not have authorization to edit this mission"
+        redirect_to missions_path  
+      end
       @mission.build_category if !@mission.category
     end
 
