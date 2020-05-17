@@ -7,6 +7,7 @@ class Mission < ApplicationRecord
 
   scope :alphabetical_order, -> { order(:title)}
   scope :date_created, -> { order(created_at: :desc)}
+  scope :last_updated, -> { order(updated_at: :desc)}
   scope :with_long_title, ->(length = 20) { where("LENGTH(title) > ?", length) }
 
   # delegate :name, to: :category
