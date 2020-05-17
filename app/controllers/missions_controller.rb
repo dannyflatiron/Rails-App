@@ -4,10 +4,10 @@ class MissionsController < ApplicationController
 
     def index
       if params[:user_id] && @user = User.find_by_id(params[:user_id])
-        @missions = @user.missions
+        @missions = @user.missions.alphabetical_order
       else
         @error = "That user does not exist" if params[:user_id] 
-        @missions = Mission.all 
+        @missions = Mission.all.alphabetical_order
       end    
     end
 
@@ -24,7 +24,7 @@ class MissionsController < ApplicationController
       if @mission.save 
         redirect_to missions_path
       else
-        redirect_to '/'
+        redirect_to new_mission_path
       end
     end
 
