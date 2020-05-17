@@ -1,7 +1,7 @@
 <h1>Agent <%= @user.name %></h1>
 <br>
 <%= link_to "View your missions here", missions_path %><br><br>
-<%= link_to "View your messages here", messages_path %>
+<%= link_to "View your messages here", user_messages_path(@user) %>
 <br>
 <br>
 <%= form_tag("/users/#{@user.id}", method: 'get') do %>
@@ -10,5 +10,5 @@
   <%= text_field_tag(:string) %>
   <%= submit_tag("decodeMorse") %>
 
-
 <% end %>
+

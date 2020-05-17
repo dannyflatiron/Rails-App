@@ -7,14 +7,15 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
 
-  
+  post '/users/:id/message' => 'users#message'
 
   resources :messages
 
   # Nested Routes
   resources :users, only: [:show, :index] do 
+    resources :messages, only: [:new, :create, :index, :show]
     resources :missions, only: [:new, :create, :index, :show]
-    resources :messages, shallow: true
+    # resources :messages, shallow: true
   end
   resources :missions do 
     resources :messages

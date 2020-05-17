@@ -19,7 +19,8 @@ class UsersController < ApplicationController
       @message = params[:content]
 
       #send an email
-      send_coded_message(@receiver, @sender, @message)
+      email = EncodedMessageMailer.send_coded_message(@receiver, @sender, @message)
+      email.deliver_now
       redirect_to users_path
     end
 

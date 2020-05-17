@@ -1,7 +1,11 @@
-Hi, <%= @receiver.username %>
+<h4>Hi <%= @receiver.name %>, </h4>
 
-Here is your encoded message.
+<p>Here is your encoded message. </p><br>
 
-Can you unlock its message?
+<p><%= @message %></p><br>
 
-- <%= @sender.username %>
+<p>Can you unlock its message?</p><br>
+
+<p>- <%= @sender.name %></p><br>
+
+<p>PS. Sent from my first Rails app</p>

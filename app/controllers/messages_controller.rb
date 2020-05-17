@@ -33,9 +33,6 @@ class MessagesController < ApplicationController
       end
     end
 
-    def destroy
-    end
-
     private
 
     def message_params
@@ -43,6 +40,7 @@ class MessagesController < ApplicationController
     end
 
     def set_message
+      @user = User.find_by_id(params[:user_id]) if params[:user_id]
       @message = Message.find_by(id: params[:id])
       if !@message
         flash[:message] = "Message was not found"

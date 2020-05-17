@@ -4,7 +4,8 @@
 
 <h5>Send encoded message to </h5>
 <div>
-<%= form_tag("/posts/#{@post_id}/message") do %>
+
+<%= form_tag("/users/#{@user.id}/message") do %>
 
     <label>Send your encoded message here:</label><br>
     <%= text_area_tag :content, morse_encode(@message.content) %><br>
