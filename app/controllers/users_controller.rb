@@ -1,14 +1,16 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!, except: [:index]
 
-    def new
-    end
-
-    def create
+    def index
+      @users = User.all
     end
 
     def show
       @user = User.find(params[:id])
+      if !@user || @user.id != current_user.id
+        flash[:message] = "You do not have authorization to edit this mission"
+        redirect_to users_path  
+      end
     end
 
     def message
