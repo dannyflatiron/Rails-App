@@ -8,7 +8,7 @@ class Mission < ApplicationRecord
   scope :alphabetical_order, -> { order(:title)}
   scope :with_long_title, ->(length = 20) { where("LENGTH(title) > ?", length) }
 
-  delegate :name, to: :category
+  # delegate :name, to: :category
 
 
   # makes more sense to use find or create by instead of first or create
@@ -18,6 +18,7 @@ class Mission < ApplicationRecord
   end
 
   def self.filter(params)
+    binding.pry
     where("category_id = ?", params)
   end
 
