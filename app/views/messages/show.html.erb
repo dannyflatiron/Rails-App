@@ -1,3 +1,17 @@
 <h1><%= @message.user.name %>'s Encoded Messages</h1>
 
-<p>Coded message: "<%= @message.content %>" for Mission <%= link_to @message.mission.title, mission_path(@message.mission_id) %></p>
+<p>Coded message: "<%= morse_encode(@message.content) %>" for Mission <%= link_to @message.mission.title, mission_path(@message.mission_id) %></p>
+
+<h5>Send encoded message to </h5>
+<div>
+<%= form_tag("/posts/#{@post_id}/message") do %>
+
+    <label>Send your encoded message here:</label><br>
+    <%= text_area_tag :content, morse_encode(@message.content) %><br>
+    <%= submit_tag "Send secret message" %>
+
+<% end %>
+</div>
+
+
+
