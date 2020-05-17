@@ -1,5 +1,5 @@
-All Missions
+<h1>All Missions</h1>
 
 <% @missions.each do |mission| %>
-    <h3>Mission Title:<%= mission.title %> Mission Description:<%= mission.content %>
+    <p><strong>Mission Title:</strong> <%= mission.title %> <strong>Mission Description:</strong> <%= mission.content %></p>
 <% end %>
