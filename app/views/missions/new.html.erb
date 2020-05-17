@@ -2,23 +2,6 @@
 
 <%= render partial: "layouts/errors", locals: {object: @mission} %>
 
-<%= form_for(@mission) do |f| %>
+<%= render partial: "layouts/missions", locals: {object: @mission} %>
 
-    <%= f.label "Choose a mission category:" %>
-    <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: true %>
 
-   <p>Or create a new category:
-  <%= f.fields_for :category do |c| %>
-    <%= c.text_field :name %>
-  <% end %>
-  </p> 
-
-    <%= f .label :title %>
-    <%= f.text_field :title%>
-
-    <%= f .label :content %>
-    <%= f.text_field :content%>
-
-    <%= f.submit "Create Mission" %>
-
-<% end %>
