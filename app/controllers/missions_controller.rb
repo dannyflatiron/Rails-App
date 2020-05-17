@@ -24,7 +24,7 @@ class MissionsController < ApplicationController
       if @mission.save 
         redirect_to missions_path
       else
-        redirect_to new_mission_path
+        render :new
       end
     end
 
