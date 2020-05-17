@@ -1,0 +1,22 @@
+<%= form_for(object) do |f| %>
+
+    <%= f.label "Choose a mission category:" %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: true %>
+
+   <p>Or create a new category:
+  <%= f.fields_for :category do |c| %>
+    <%= c.text_field :name %>
+  <% end %>
+  </p> 
+
+    <%= f .label :title %>
+    <%= f.text_field :title%>
+    <br>
+    <br>
+    <%= f .label :content %>
+    <%= f.text_area :content%>
+    <br>
+    <br>
+    <%= f.submit "Create Mission", data: { confirm: "Are you sure you want to create this mission?" } %>
+
+<% end %>
