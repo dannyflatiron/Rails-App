@@ -1,5 +1,7 @@
-Edit Page
-
-
+<h1>Change Mission Details for <%= @mission.title %></h1>
 
 <%= render partial: "layouts/errors", locals: {object: @mission} %>
+
+<%= render partial: "layouts/missions", locals: {object: @mission} %>
+
+
