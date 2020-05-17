@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!
+  before_action :set_message, only: [:show]
 
 
     def index 
@@ -12,7 +13,6 @@ class MessagesController < ApplicationController
     end
 
     def show
-      @message = Message.find_by(id: params[:id])
     end
 
     def new
@@ -33,19 +33,6 @@ class MessagesController < ApplicationController
       end
     end
 
-    def edit
-      @message = Message.find_by(id: params[:id])
-    end
-    
-    def update
-      @message = Message.find_by(id: params[:id])
-      if @message.update(message_params)
-        redirect_to message_path(@message)
-      else
-        render :edit
-      end
-    end
-
     def destroy
     end
 
@@ -55,5 +42,12 @@ class MessagesController < ApplicationController
       params.require(:message).permit(:content, :mission_id, :user_id)
     end
 
+    def set_message
+      @message = Message.find_by(id: params[:id])
+      if !@message
+        flash[:message] = "Message was not found"
+        redirect_to messages_path
+      end
+    end
 
 end
