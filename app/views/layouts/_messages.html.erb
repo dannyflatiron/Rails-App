@@ -1,0 +1,15 @@
+<%= form_for([@message.mission, @message]) do |f| %>
+
+   <% if !!@message.mission %>
+    <%= f.label :Mission%>
+    <%= f.collection_select :mission_id, Mission.all, :id, :title %>
+   <% else %>
+    <%= f.hidden_field :mission_id %>
+   <% end %>
+
+    <%= f.label :Message %>
+    <%= f.text_field :content %>
+
+    <%= f.submit "Encode Message" %>
+
+<% end %>
