@@ -1,6 +1,9 @@
 <h1>Mission <%= @mission.title %></h1>
 
 <div>Mission Description: <%= @mission.content %></div>
-
+<p>Change mission details <%= link_to "click here", edit_mission_path(@mission) %></p>
 <p>View past agent messages <%= link_to "click here", mission_messages_path(@mission) %></p>
 <p>Create a new message for future agents <%= link_to "click here", new_mission_message_path(@mission) %></p>
+<br>
+<%= link_to "Delete", mission_path(@mission), :method => :delete, :class => "btn btn-danger", data: { confirm: "Are you sure you want to delete this mission?"} %>
+ 
