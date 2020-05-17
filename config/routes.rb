@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :messages
 
   # Nested Routes
-  resources :users, only: [:show] do 
+  resources :users, only: [:show, :index] do 
     resources :missions, only: [:new, :create, :index, :show]
     resources :messages, shallow: true
   end
