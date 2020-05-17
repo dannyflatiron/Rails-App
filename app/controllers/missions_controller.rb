@@ -56,6 +56,7 @@ class MissionsController < ApplicationController
 
     def destroy
       Mission.find_by(params[:id]).destroy
+      flash[:message] = "Mission was successfully deleted"
       redirect_to user_path(current_user)
     end
 
