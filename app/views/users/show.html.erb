@@ -2,3 +2,13 @@
 <br>
 <%= link_to "View your missions here", missions_path %><br><br>
 <%= link_to "View your messages here", messages_path %>
+<br>
+<br>
+<%= form_tag("/users/#{@user.id}", method: 'get') do %>
+
+  <%= label_tag(:string, "Decode message:") %>
+  <%= text_field_tag(:string) %>
+  <%= submit_tag("decodeMorse") %>
+
+
+<% end %>
