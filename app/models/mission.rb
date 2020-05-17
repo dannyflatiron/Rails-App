@@ -6,6 +6,7 @@ class Mission < ApplicationRecord
   validates :content, :title, presence: true
 
   scope :alphabetical_order, -> { order(:title)}
+  scope :date_created, -> { order(created_at: :desc)}
   scope :with_long_title, ->(length = 20) { where("LENGTH(title) > ?", length) }
 
   # delegate :name, to: :category
