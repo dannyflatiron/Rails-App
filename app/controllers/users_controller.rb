@@ -11,6 +11,16 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
+    def message
+      @receiver = User.find_by(id: params[:id])
+      @sender = current_user
+      @message = params[:content]
+
+      #send an email
+      send_coded_message(@receiver, @sender, @message)
+      redirect_to users_path
+    end
+
 
     private
     
