@@ -1,14 +1,15 @@
 <% if @mission %>
   <h1>Messages for Mission: <%= @mission.title %></h1><br>
   <% @mission.messages.each do |message| %>
-    <%= message.content %> says <%= message.content %>
+    <p>Secret Agent: <%= message.user.name %> says "<%= message.content %>" </p>
   <% end %>
 <% else %>
   <h1>All Messages</h1>
-<% end %>
+
 
 <ul>
 <% @messages.each do |m|%>
-  <li><%= m.user.name%> says "<%= m.content%>" about this mission: <strong><%= link_to m.mission.title, mission_path(m.mission_id) %></strong></li>
+  <li>Secret Agent <%= m.user.name%> says "<%= m.content%>" about this mission: <strong><%= link_to m.mission.title, mission_path(m.mission_id) %></strong></li>
 <% end %>
 </ul>
+<% end %>
