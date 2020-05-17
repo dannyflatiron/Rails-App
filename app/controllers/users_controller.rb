@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     def show
       @user = User.find(params[:id])
       if !@user || @user.id != current_user.id
-        flash[:message] = "You do not have authorization to edit this mission"
+        flash[:message] = "You do not have authorization to view this Agent's account"
         redirect_to users_path  
       end
     end
