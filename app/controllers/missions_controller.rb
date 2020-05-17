@@ -10,9 +10,8 @@ class MissionsController < ApplicationController
         @missions = Mission.alphabetical_order.includes(:category, :user)
       end    
       @missions = @missions.search(params[:q].downcase) if params[:q] && !params[:q].empty?
-      # @missions = @missions.filter(params[:mission][:category_id]) if params[:mission] && params[:mission][:category_id] != ""
-      # binding.pry
-
+      @missions = @missions.filter(params[:mission][:category_id]) if params.try(:mission) && params.try(:mission).try(:category_id)
+      
     end
 
     def show
