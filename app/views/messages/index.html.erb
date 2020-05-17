@@ -1,7 +1,7 @@
 <% if @mission %>
   <h1>Messages for Mission: <%= @mission.title %></h1><br>
   <% @mission.messages.each do |message| %>
-    <p>Secret Agent: <%= message.user.name %> says "<%= message.content %>" </p>
+    <p>Secret Agent: <%= message.user.name %> says "<%= morse_encode(message.content) %>" </p>
   <% end %>
 <% else %>
   <h1>All Messages</h1>
@@ -9,7 +9,7 @@
 
 <ul>
 <% @messages.each do |m|%>
-  <li>Secret Agent <%= m.user.name%> says "<%= m.content%>" about this mission: <strong><%= link_to m.mission.title, mission_path(m.mission_id) %></strong></li>
+  <li>Secret Agent <%= m.user.name%> says "<%= morse_encode(m.content) %>" about this mission: <strong><%= link_to m.mission.title, mission_path(m.mission_id) %></strong></li>
 <% end %>
 </ul>
 <% end %>
