@@ -11,6 +11,10 @@ class MessagesController < ApplicationController
       end
     end
 
+    def show
+      @message = Message.find_by(id: params[:id])
+    end
+
     def new
       if params[:mission_id] && @mission = Mission.find_by_id(params[:mission_id])
         @message = @mission.messages.build
@@ -29,10 +33,6 @@ class MessagesController < ApplicationController
       end
     end
 
-    def show
-      @message = Message.find_by(id: params[:id])
-    end
-
     def edit
       @message = Message.find_by(id: params[:id])
     end
@@ -44,6 +44,9 @@ class MessagesController < ApplicationController
       else
         render :edit
       end
+    end
+
+    def destroy
     end
 
     private
