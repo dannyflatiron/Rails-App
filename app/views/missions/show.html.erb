@@ -1,5 +1,6 @@
 <h1>Mission <%= @mission.title %></h1>
 
+<div>Mission Category: <%= @mission.category.name %></div><br>
 <div>Mission Description: <%= @mission.content %></div>
 <p>Change mission details <%= link_to "click here", edit_mission_path(@mission) %></p>
 <p>View past agent messages <%= link_to "click here", mission_messages_path(@mission) %></p>
