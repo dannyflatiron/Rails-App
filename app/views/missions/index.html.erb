@@ -12,9 +12,8 @@
   <%= submit_tag("Filter") %>
 <% end %>
  <br>
-<strong>MISSION...CATEGORY...NAME...IS...NOT...WORKING...WHY?</strong>
 <% @missions.each do |mission| %>
-    <p><strong>Mission Title:</strong> <%= mission.title %> | <strong>Mission Category:</strong> category should be here <% mission.category.name %><br> <strong>Date Created:</strong> <%= mission.created_at.strftime("%m/%d/%Y at %I:%M%p") %> | <strong>Last Updated:</strong> <%= mission.updated_at.strftime("%m/%d/%Y at %I:%M%p") %>
+    <p><strong>Mission Title:</strong> <%= mission.title %> | <strong>Mission Category:</strong> <%= mission.category.name %><br> <strong>Date Created:</strong> <%= mission.created_at.strftime("%m/%d/%Y at %I:%M%p") %> | <strong>Last Updated:</strong> <%= mission.updated_at.strftime("%m/%d/%Y at %I:%M%p") %>
     <br>
     <%= link_to "Read Mission Details", mission_path(mission) %></p>
 <% end %>
