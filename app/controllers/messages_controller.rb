@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
 
 
     def index 
-      if params[:mission_id] && @mission = Mission.find_by_id(params[:mission_id])
+      if params[:mission_id] && @mission = Mission.find_by_id(params[:mission_id]) 
         @messages = @mission.messages
       else
         @error = "That mission does not exist" if params[:mission_id]

@@ -1,6 +1,6 @@
 <h1>Agent <%= @user.name %></h1>
 <br>
-<%= link_to "View your missions here", missions_path %><br><br>
+<%= link_to "View your missions here", user_missions_path(@user) %><br><br>
 <%= link_to "View your messages here", user_messages_path(@user) %>
 <br>
 <br>
