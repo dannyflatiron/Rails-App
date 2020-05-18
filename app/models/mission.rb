@@ -20,7 +20,6 @@ class Mission < ApplicationRecord
   end
 
   def self.filter(params)
-    binding.pry
     where("category_id = ?", params)
   end
 
