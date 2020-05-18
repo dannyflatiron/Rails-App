@@ -1,7 +1,7 @@
 class Mission < ApplicationRecord
-  belongs_to :user #gives the reader and writer method
+  belongs_to :user, dependent: :destroy#gives the reader and writer method
   belongs_to :category
-  has_many :messages, dependent: :delete_all
+  has_many :messages, dependent: :destroy
   has_many :users, through: :messages #gives only the writer method for the plural 
   validates :content, :title, presence: true
 
@@ -20,7 +20,6 @@ class Mission < ApplicationRecord
   end
 
   def self.filter(params)
-    binding.pry
     where("category_id = ?", params)
   end
 
