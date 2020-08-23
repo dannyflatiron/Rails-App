@@ -19,9 +19,14 @@ class MissionsController < ApplicationController
     end
 
     def new
+      # creating a new mission
       if params[:user_id] && @user = User.find_by_id(params[:user_id])
+        # user exists 
+        # users/10/mission/new
         @mission = @user.missions.build
       else
+        # creating a new mission without attaching it to any user 
+        # Mission.all......mission_id = 5 user.id = 
         @mission = Mission.new
       end
       @mission.build_category
