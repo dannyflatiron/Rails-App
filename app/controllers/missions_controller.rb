@@ -9,9 +9,8 @@ class MissionsController < ApplicationController
         @error = "That user does not exist" if params[:user_id] 
         @missions = Mission.last_updated.includes(:category, :user)
       end    
-      @missions = @missions.search(params[:q].downcase) if params[:q] && !params[:q].empty?
-      @missions = @missions.filter(params[:mission][:category_id]) if params.try(:mission) && params.try(:mission).try(:category_id)
-      
+      missions_search
+      missions_filter
     end
 
     def show
@@ -20,9 +19,14 @@ class MissionsController < ApplicationController
     end
 
     def new
+      # creating a new mission
       if params[:user_id] && @user = User.find_by_id(params[:user_id])
+        # user exists 
+        # users/10/mission/new
         @mission = @user.missions.build
       else
+        # creating a new mission without attaching it to any user 
+        # Mission.all......mission_id = 5 user.id = 
         @mission = Mission.new
       end
       @mission.build_category
@@ -38,7 +42,7 @@ class MissionsController < ApplicationController
     end
 
     def edit
-      @mission = Mission.find_by(params[:id])
+      set_mission
       if !@mission || @mission.user != current_user
         flash[:message] = "You do not have authorization to edit this mission"
         redirect_to missions_path  
@@ -47,15 +51,15 @@ class MissionsController < ApplicationController
     end
 
     def update
-      @mission = Mission.find_by(params[:id])
-      redirect to missions_path if !@mission || @mission.user != current_user
+      set_mission
+        redirect to missions_path if !@mission || @mission.user != current_user
       if @mission.update(mission_params)
         redirect_to mission_path(@mission)
       end
     end
 
     def destroy
-      Mission.find_by(params[:id]).destroy
+      set_mission.destroy
       flash[:message] = "Mission was successfully deleted"
       redirect_to user_path(current_user)
     end
@@ -66,5 +70,17 @@ class MissionsController < ApplicationController
 
     def mission_params
       params.require(:mission).permit(:title, :content, :category_id, category_attributes: [:name])
+    end
+
+    def set_mission
+      @mission = Mission.find_by(params[:id])
+    end
+
+    def missions_search
+      @missions = @missions.search(params[:q].downcase) if params[:q] && !params[:q].empty?
+    end
+
+    def missions_filter
+      @missions = @missions.filter(params[:mission][:category_id]) if params.try(:mission) && params.try(:mission).try(:category_id)
     end
 end
