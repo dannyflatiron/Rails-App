@@ -1,24 +1,11 @@
-# README
+Overview
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Users may create an account securley with Omniauth. Messages and missions can be created and encoded in morse code. Search functionality is also featured in this app.
 
-Things you may want to cover:
+To install this app, follow these steps:
 
-* Ruby version
+Fork and clone this repository
 
-* System dependencies
+Run bundle install, rails db:migrate, rails db:seed, rails server to open up the browser in your browser, and enter http:localhost:3000.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This project has been licensed under the MIT open source license.
