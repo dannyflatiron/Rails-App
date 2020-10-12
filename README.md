@@ -39,7 +39,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Overview
 
 Users may create an account securley with Omniauth. Messages and missions can be created and encoded in morse code. Search functionality is also featured in this app.
-
+ 
 To install this app, follow these steps:
 
 Fork and clone this repository
